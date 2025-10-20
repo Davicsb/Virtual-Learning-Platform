@@ -1,0 +1,41 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--cor-fundo-card);
+  border-bottom: 1px solid var(--cor-borda);
+  font-family: sans-serif;
+  height: 60px; /* Altura fixa */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  /* Usa a cor primária */
+  color: var(--cor-primaria); 
+}
+
+.navbar-brand::before {
+  content: 'Lúmen';
+  margin-right: 0.5rem;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Aumenta o espaço */
+  color: var(--cor-texto-secundario);
+}
+
+.navbar-logout {
+  color: var(--cor-primaria);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.navbar-logout:hover {
+  background-color: var(--cor-primaria-clara);
+}

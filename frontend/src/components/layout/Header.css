@@ -1,0 +1,25 @@
+.main-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80px;
+  background-color: var(--cor-primaria);
+  padding: 0 5%;
+  color: white;
+}
+
+.main-header .logo-container {
+  margin: 0; 
+}
+
+.main-header .logo-text {
+  color: white;
+  text-shadow: none;
+}
+/* (Estilos da logo de livro) */
+.main-header .logo-container::before {
+  background-color: #f4f5f7;
+}
+.main-header .logo-container::after {
+  background-color: #dfe1e6;
+}

@@ -1,0 +1,21 @@
+.dashboard-card {
+  background-color: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  height: 100%; /* Ocupa a altura do grid */
+}
+
+.dashboard-card-title {
+  font-size: 1.5rem;
+  color: var(--cor-texto);
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.dashboard-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

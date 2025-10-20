@@ -1,0 +1,37 @@
+.catalog-container {
+  background-color: var(--cor-fundo-pagina); /* Fundo cinza-claro */
+  min-height: 100vh;
+}
+
+.catalog-hero {
+  /* Fundo branco para destacar do header */
+  background-color: var(--cor-fundo-card);
+  padding: 3rem 5%;
+  text-align: center;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.catalog-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--cor-texto);
+  margin-bottom: 0.5rem;
+}
+
+.catalog-hero p {
+  font-size: 1.1rem;
+  color: var(--cor-texto-secundario);
+}
+
+.catalog-grid-section {
+  padding: 3rem 5%;
+  max-width: 1400px;
+  margin: 0 auto; /* Centraliza o grid */
+}
+
+.catalog-grid {
+  display: grid;
+  /* Cria colunas de no mínimo 350px, auto-ajustáveis */
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}

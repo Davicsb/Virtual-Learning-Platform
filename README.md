@@ -1,5 +1,5 @@
 # Virtual-Learning-Platform
-Projeto de um ambiente virtual escolar baseado no sistema SIGAA e Google Classroom para a máteria de engenharia de software.
+Projeto de um ambiente virtual escolar baseado no sistema SIGAA, AVA e Google Classroom para a máteria de engenharia de software.
 
 ## História de usuários
 

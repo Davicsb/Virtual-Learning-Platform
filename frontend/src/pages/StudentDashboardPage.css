@@ -1,0 +1,41 @@
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--cor-texto);
+}
+
+.dashboard-subtitle {
+  font-size: 1.1rem;
+  color: var(--cor-texto-secundario);
+  margin-bottom: 2rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas */
+  gap: 1.5rem;
+}
+
+/* Estilo do item de lista genérico dentro do card */
+.item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+.item-card:hover {
+  background-color: var(--cor-fundo-pagina);
+}
+.item-card strong {
+  color: var(--cor-primaria);
+}
+.item-card span {
+  font-size: 0.9rem;
+  color: var(--cor-texto-secundario);
+}
+.item-card.item-atividade strong {
+  color: #d9480f; /* Laranja/vermelho para pendências */
+}

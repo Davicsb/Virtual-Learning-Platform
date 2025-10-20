@@ -1,0 +1,41 @@
+/* 1. Definição da Paleta de Cores "Lúmen" (Tons de Azul) */
+:root {
+  /* Azul Principal (para botões, links, ícones) */
+  --cor-primaria: #0052cc; 
+  /* Azul Escuro (para hover de botões) */
+  --cor-primaria-hover: #0041a3;
+  /* Azul Claro (para fundos de alertas, destaques) */
+  --cor-primaria-clara: #e6f0ff;
+
+  /* Cores Neutras (baseadas em tons de azul) */
+  
+  /* Azul-escuro (para textos principais) */
+  --cor-texto: #172b4d; 
+  /* Cinza-azulado (para textos secundários) */
+  --cor-texto-secundario: #5e6c84;
+  /* Cinza-azulado claro (para bordas) */
+  --cor-borda: #dfe1e6;
+  /* Fundo da Página (um cinza-azulado MUITO claro) */
+  --cor-fundo-pagina: #f4f5f7;
+  /* Fundo dos "Cards" (branco) */
+  --cor-fundo-card: #ffffff;
+}
+
+/* 2. Reset Global e Estilos Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--cor-fundo-pagina);
+  color: var(--cor-texto);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--cor-texto);
+}

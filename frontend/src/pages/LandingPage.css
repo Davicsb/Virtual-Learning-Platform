@@ -1,0 +1,269 @@
+/* 1. O Container Principal (fundo branco) */
+.new-landing-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--cor-fundo-card);
+  overflow: hidden;
+  position: relative;
+}
+
+/* 2. O Header (BARRA AZUL) */
+.new-landing-header {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  height: 80px;
+  background-color: var(--cor-primaria);
+  padding: 0 5%;
+  color: white;
+}
+
+.new-landing-header .logo-container {
+  margin: 0; 
+}
+
+/* 3. Estilos da logo DENTRO do header azul */
+.new-landing-header .logo-text {
+  color: white;
+  text-shadow: none;
+}
+.new-landing-header .logo-container::before {
+  background-color: #f4f5f7;
+}
+.new-landing-header .logo-container::after {
+  background-color: #dfe1e6;
+}
+
+/* 4. Estilos dos botões do header (AGORA ESCONDIDOS) */
+.new-landing-auth {
+  display: none;
+}
+
+/* 5. O Conteúdo "Hero" (Layout de 2 colunas) */
+.new-landing-hero {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  min-height: 600px;
+  padding: 3rem 5%; 
+}
+
+/* 6. Coluna da Esquerda (Textos) */
+.new-landing-left {
+  padding-right: 2rem;
+}
+.new-landing-headline {
+  font-size: 5.5rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  color: var(--cor-texto);
+  margin-bottom: 2rem;
+}
+.headline-highlight {
+  position: relative;
+  display: inline-block;
+  color: var(--cor-primaria); 
+}
+.headline-highlight::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  bottom: 0px;
+  height: 2.5rem; 
+  background-color: var(--cor-primaria-clara);
+  z-index: -1;
+  border-radius: 5px;
+}
+.new-landing-description {
+  font-size: 1.25rem;
+  color: var(--cor-texto-secundario);
+  max-width: 500px;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+/* 7. CTAs DA HERO (RESTAURADOS) */
+.new-landing-ctas {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.new-landing-ctas .btn {
+  font-size: 1.1rem;
+  padding: 14px 24px;
+}
+.cta-divider {
+  color: var(--cor-texto-secundario);
+}
+.cta-link {
+  color: var(--cor-primaria);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+.cta-link:hover {
+  text-decoration: underline;
+}
+
+/* 8. Coluna da Direita (Bloco Gráfico com FOTO) */
+.new-landing-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+}
+.graphic-block {
+  width: 80%;
+  height: 70%;
+  min-height: 450px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+  background-image: url('https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* 9. SEÇÃO DE CURSOS (COM FUNDO ANIMADO) */
+.courses-promo-section {
+  padding: 5rem 5%;
+  text-align: center;
+  
+  /* --- MUDANÇA: FUNDO ANIMADO --- */
+  background: linear-gradient(
+    -45deg, 
+    var(--cor-primaria), 
+    #a8c0ff, 
+    var(--cor-primaria-clara),
+    var(--cor-primaria)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+}
+
+/* Animação do gradiente (necessária) */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* extos escuros para contraste com o fundo claro */
+.courses-promo-headline {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--cor-texto);
+  margin-bottom: 1rem;
+}
+.courses-promo-description {
+  font-size: 1.1rem;
+  color: var(--cor-texto-secundario);
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+/* Botão invertido (branco) para o fundo escuro */
+.btn-inverted.btn-primary {
+  background-color: white;
+  color: var(--cor-primaria);
+}
+.btn-inverted.btn-primary:hover {
+  background-color: #e6f0ff;
+  color: var(--cor-primaria-hover);
+}
+
+/* 10. SEÇÃO DE DEPOIMENTOS */
+.testimonials-section {
+  background-color: var(--cor-fundo-card);
+  padding: 5rem 5%;
+  text-align: center;
+}
+.testimonials-headline {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--cor-texto);
+  margin-bottom: 3rem; 
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem; 
+  text-align: left; 
+}
+.testimonial-card {
+  background-color: #FAFBFC; 
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--cor-primaria);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+.author-avatar::before {
+  content: attr(data-initial);
+}
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+.author-name {
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+.author-role {
+  font-size: 0.9rem;
+  color: var(--cor-texto-secundario);
+}
+.testimonial-quote {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cor-texto-secundario);
+  font-style: italic;
+}
+
+/* 11. Formas Decorativas (no fundo da página) */
+.decorative-circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--cor-primaria-clara);
+  z-index: -2;
+}
+.decorative-circle.circle-1 {
+  width: 150px;
+  height: 150px;
+  top: 20%;
+  left: 45%;
+  opacity: 0.6;
+}
+.decorative-circle.circle-2 {
+  width: 80px;
+  height: 80px;
+  bottom: 25%;
+  left: 30%;
+}

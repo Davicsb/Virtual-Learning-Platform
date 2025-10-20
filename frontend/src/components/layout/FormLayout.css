@@ -1,0 +1,55 @@
+.form-layout-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(
+    -45deg, 
+    var(--cor-primaria), 
+    #a8c0ff,
+    var(--cor-primaria-clara),
+    var(--cor-primaria)
+  );
+
+  background-size: 400% 400%;
+
+  animation: gradientShift 20s ease infinite;
+}
+
+/* 4. Definimos a animação (o que o 'gradientShift' faz) */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.form-layout-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem; /* 40px */
+  background-color: var(--cor-fundo-card); 
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra mais forte */
+}
+
+.form-layout-logo {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--cor-primaria);
+  margin-bottom: 0.5rem;
+}
+
+.form-layout-title {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--cor-texto);
+  margin-bottom: 2rem; /* 32px */
+}

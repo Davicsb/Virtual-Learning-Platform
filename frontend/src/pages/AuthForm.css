@@ -1,0 +1,18 @@
+.login-button-container {
+  margin-top: 1.5rem;
+}
+
+/* O botão dentro deve ocupar 100% da largura */
+.login-button-container .btn {
+  width: 100%;
+}
+
+.login-error-message {
+  color: #DE350B; /* Cor de erro */
+  background-color: #FFEDEB; /* Fundo de erro */
+  border: 1px solid #FFC6BD;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}

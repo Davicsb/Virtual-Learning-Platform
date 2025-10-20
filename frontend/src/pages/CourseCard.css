@@ -1,0 +1,44 @@
+.course-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Empurra o botão para baixo */
+  
+  height: 100%; /* Ocupa a altura do grid */
+  background-color: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden; /* Para o layout funcionar */
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.course-card-content {
+  padding: 1.5rem; /* 24px */
+}
+
+.course-card h3 {
+  font-size: 1.25rem;
+  color: var(--cor-texto);
+  margin-bottom: 0.75rem;
+}
+
+.course-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--cor-texto-secundario);
+  margin-bottom: 1.5rem;
+}
+
+.course-card .btn {
+  /* Arredonda só os cantos de baixo */
+  border-radius: 0 0 8px 8px;
+  border-top: 1px solid var(--cor-borda);
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}

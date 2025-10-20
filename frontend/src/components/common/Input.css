@@ -1,0 +1,45 @@
+.input-group {
+  margin-bottom: 1.25rem; /* 20px */
+  width: 100%;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 0.5rem; /* 8px */
+  font-weight: 600;
+  color: var(--cor-texto);
+  font-size: 0.875rem; /* 14px */
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 2px solid var(--cor-borda);
+  border-radius: 5px;
+  background-color: #FAFBFC;
+  color: var(--cor-texto);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Efeito de foco azul (tema) */
+.input-field:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px var(--cor-primaria-clara);
+}
+
+/* Estilização de erro */
+.input-group-error .input-field {
+  border-color: #DE350B; /* Vermelho para erro */
+}
+
+.input-group-error .input-field:focus {
+  box-shadow: 0 0 0 3px #FFEDEB; /* Fundo vermelho claro */
+}
+
+.input-error-message {
+  color: #DE350B;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

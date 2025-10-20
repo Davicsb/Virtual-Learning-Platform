@@ -1,0 +1,12 @@
+.app-layout {
+  display: flex;
+  background-color: var(--cor-fundo-pagina);
+}
+
+.app-content {
+  /* Ocupa todo o espaço */
+  flex-grow: 1;
+  margin-right: 260px; 
+  padding: 2.5rem;
+  min-height: 100vh;
+}
