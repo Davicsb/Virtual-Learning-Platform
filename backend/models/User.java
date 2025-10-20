@@ -5,7 +5,7 @@ abstract class User {
     private String userName;
     private String userEmail;
     private String userPassword;
-    private U userType;
+    private U userType; // tipo do usuário
 
     User(String name, String email, String password, U type){ //Construtor (init)
         userName = name;
