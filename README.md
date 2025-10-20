@@ -106,10 +106,10 @@ Até agora só tem requisitos funcionais.
 
 Microserviços para o funcionamento do sistema.
 
-**AuthService**         - Lida com a autenticação e cadastro de usuários.  
-**UserService**         - Lida com o gerenciamento do usuário (editar dados, listar, visualizar, remover, etc).  
-**ClassService**        - Lida com o gerenciamento de turmas (listar, visualizar, etc).  
-**AssignmentsService**  - Lida com o gerenciamento de atividades (listar, visualizar, entrega de arquivos, entrega definitiva, etc).  
-**AdminService**        - Lida com as funcionalidades exclusivas de admins.  
-**ProfessorService**    - Lida com as funcionalidades exclusivas de professores.  
-**NotificationService** - Lida com o gerenciamento de avisos (criar, editar, remover, visualizar, etc).  
+`AuthService`         - Lida com a autenticação e cadastro de usuários.  
+`UserService`         - Lida com o gerenciamento do usuário (editar dados, listar, visualizar, remover, etc).  
+`ClassService`        - Lida com o gerenciamento de turmas (listar, visualizar, etc).  
+`AssignmentsService`  - Lida com o gerenciamento de atividades (listar, visualizar, entrega de arquivos, entrega definitiva, etc).  
+`AdminService`        - Lida com as funcionalidades exclusivas de admins.  
+`ProfessorService`    - Lida com as funcionalidades exclusivas de professores.  
+`NotificationService` - Lida com o gerenciamento de avisos (criar, editar, remover, visualizar, etc).  
