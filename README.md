@@ -1,6 +1,43 @@
 # Virtual-Learning-Platform
 Projeto de um ambiente virtual escolar baseado no sistema SIGAA, AVA e Google Classroom para a máteria de engenharia de software.
 
+# Rodando o Front-end (React)
+
+Para rodar o ambiente de desenvolvimento front-end, siga os passos abaixo.
+
+**Pré-requisitos:**
+* [Node.js](https://nodejs.org/) (Versão LTS recomendada)
+* [Git](https://git-scm.com/)
+
+---
+
+### Guia de Instalação
+
+1.  Clone o repositório (se ainda não o fez):
+    ```bash
+    git clone https://[URL_DO_SEU_REPOSITORIO_GIT]
+    cd Virtual-Learning-Platform
+    ```
+
+2.  Navegue até a pasta do front-end:
+    ```bash
+    cd frontend
+    ```
+
+3.  Instale todas as dependências do projeto (React, Vite, etc.):
+    ```bash
+    npm install
+    ```
+
+4.  Inicie o servidor de desenvolvimento:
+    ```bash
+    npm run dev
+    ```
+
+5.  Abra seu navegador e acesse [http://localhost:5173/](http://localhost:5173/) para ver o projeto rodando.
+
+---
+
 ## História de usuários
 
 ### 1. Como usuário eu quero:  
