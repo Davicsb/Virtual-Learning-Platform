@@ -1,12 +1,13 @@
 package models;
 
 public class Tutor extends User {
-    String curso;
+    String cursos[];
     String turmas[];
-    int atividades[];
+    String atividades[]; //talvez seja melhor hashmap...
     
-    Tutor(String name, String email, String password) {
-        super(name, email, password, U.PROFESSOR);
+    Tutor(String id, String name, String email, String password, String[] newCursos) {
+        super(id, name, email, password, U.PROFESSOR);
+        cursos = newCursos;
         //System.out.println("Conta de PROFESSOR Criada.");
     }
     

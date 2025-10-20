@@ -2,12 +2,14 @@ package models;
 
 abstract class User {
     //Atributos básicos de um usuário
+    String id;
     private String userName;
     private String userEmail;
     private String userPassword;
     private U userType; // tipo do usuário
 
-    User(String name, String email, String password, U type){ //Construtor (init)
+    User(String newId, String name, String email, String password, U type){ //Construtor (init)
+        id = newId;
         userName = name;
         userEmail = email;
         userPassword = password;
