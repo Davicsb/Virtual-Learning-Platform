@@ -100,3 +100,16 @@ Até agora só tem requisitos funcionais.
 **RF017** - O aluno deve poder ver uma listagem de atividades pendentes/não entregues de todas as turmas. - Média  
 **RF018** - O aluno deve poder entregar uma atividade. - Alta  
 **RF019** - O aluno deve poder enviar/editar/ver um arquivo de uma atividade. - Alta  
+
+
+## Microserviços
+
+Microserviços para o funcionamento do sistema.
+
+**AuthService**         - Lida com a autenticação e cadastro de usuários.  
+**UserService**         - Lida com o gerenciamento do usuário (editar dados, listar, visualizar, remover, etc).  
+**ClassService**        - Lida com o gerenciamento de turmas (listar, visualizar, etc).  
+**AssignmentsService**  - Lida com o gerenciamento de atividades (listar, visualizar, entrega de arquivos, entrega definitiva, etc).  
+**AdminService**        - Lida com as funcionalidades exclusivas de admins.  
+**ProfessorService**    - Lida com as funcionalidades exclusivas de professores.  
+**NotificationService** - Lida com o gerenciamento de avisos (criar, editar, remover, visualizar, etc).  
