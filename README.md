@@ -38,6 +38,33 @@ Para rodar o ambiente de desenvolvimento front-end, siga os passos abaixo.
 
 ---
 
+# Rodando o Back-End (Java & MySql)
+
+**Pré-requisitos:**
+* [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/download/?section=windows
+* [MySql (Community Server & Workbench)](https://dev.mysql.com/downloads/)
+* [Postman](https://www.postman.com/downloads/)
+
+---
+
+### Guia de instalação
+
+1.  Abra o MySQL Workbench e no terminal digite:
+    ```bash
+    create database AVA
+    ```
+    E execute para criar a database a ser utilizada.
+
+2.  Abra a pasta do repositório no IntelliJ.
+
+3.  Nas configurações, clique na seção plugins e instale o plugin "LomboK" no marketplace.
+
+4.  No arquivo backend/target/classes/com/application.properties troque a senha e usuário do seu mySQL.
+
+5.  Rode o arquivo backend/target/classes/com/example/AVA/AvaApplication.java
+
+---
+
 ## História de usuários
 
 ### 1. Como usuário eu quero:  
