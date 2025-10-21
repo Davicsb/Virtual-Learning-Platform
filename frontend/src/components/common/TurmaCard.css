@@ -1,0 +1,49 @@
+.turma-card-link {
+  text-decoration: none;
+}
+
+.turma-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ocupa a altura do grid */
+  background-color: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden; /* Garante que o header fique contido */
+}
+
+.turma-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.turma-card-header {
+  height: 80px; /* Espaço para uma imagem de capa no futuro */
+  background-color: var(--cor-primaria-clara); /* Azul claro */
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.turma-card-content {
+  padding: 1.5rem;
+}
+
+.turma-card-course {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cor-primaria);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.turma-card-title {
+  font-size: 1.25rem;
+  color: var(--cor-texto);
+  margin: 0.25rem 0 0.5rem 0;
+}
+
+.turma-card-prof {
+  font-size: 1rem;
+  color: var(--cor-texto-secundario);
+}
