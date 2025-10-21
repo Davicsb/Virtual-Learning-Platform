@@ -1,0 +1,54 @@
+/* src/pages/MeuPerfilPage.css */
+
+.profile-page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--cor-texto);
+}
+
+.profile-page-subtitle {
+  font-size: 1.1rem;
+  color: var(--cor-texto-secundario);
+  margin-bottom: 2rem;
+}
+
+.profile-success-message {
+  background-color: #E6F7F0; /* Verde claro */
+  color: #006644; /* Verde escuro */
+  border: 1px solid #B3F1D1;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.profile-cards-container {
+  display: grid;
+  /* Cria 2 colunas, mas a primeira é maior */
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+.profile-card {
+  background-color: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.profile-card h2 {
+  font-size: 1.5rem;
+  color: var(--cor-texto);
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.profile-card form {
+  padding: 1.5rem;
+}
+
+.profile-card-footer {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão à direita */
+}

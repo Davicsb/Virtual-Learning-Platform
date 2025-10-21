@@ -1,0 +1,22 @@
+.turmas-page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--cor-texto);
+}
+
+.turmas-page-subtitle {
+  font-size: 1.1rem;
+  color: var(--cor-texto-secundario);
+  margin-bottom: 2rem;
+}
+
+.turmas-grid-section {
+  max-width: 1400px;
+}
+
+.turmas-grid {
+  display: grid;
+  /* Cria colunas responsivas, 3 por linha em telas grandes */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}

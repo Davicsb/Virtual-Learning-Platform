@@ -1,9 +1,10 @@
 import { Logo } from '../common/Logo';
 import { NavLink, Link } from 'react-router-dom';
+import { useAuthStore } from '../../store/authStore';
 import './Sidebar.css';
 
 export const Sidebar = () => {
-  const userName = "Davi Aluno";
+  const user = useAuthStore((state) => state.user); // <-- Lê o usuário da memória
 
   return (
     <aside className="sidebar">
@@ -25,8 +26,10 @@ export const Sidebar = () => {
 
       <div className="sidebar-footer">
         <div className="user-profile">
-          <span className="user-name">{userName}</span>
-          <span className="user-role">Aluno</span>
+          {/* Mostra o nome vindo da memória */}
+          <span className="user-name">{user?.name || 'Visitante'}</span>
+          {/* Mostra o papel vindo da memória */}
+          <span className="user-role">{user?.role || 'Aluno'}</span>
         </div>
         <Link to="/" className="sidebar-link logout">
           Sair

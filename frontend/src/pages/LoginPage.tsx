@@ -1,9 +1,11 @@
+// src/pages/LoginPage.tsx
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormLayout } from '../components/layout/FormLayout';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
 import { login } from '../services/authService';
+import { useAuthStore } from '../store/authStore'; // <-- Importa o store
 import './AuthForm.css';
 
 export const LoginPage = () => {
@@ -12,8 +14,8 @@ export const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // 2. INICIE A FERRAMENTA DE NAVEGAÇÃO
   const navigate = useNavigate();
+  const setUser = useAuthStore((state) => state.setUser); // <-- Pega a função 'setUser'
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -21,14 +23,11 @@ export const LoginPage = () => {
     setIsLoading(true);
 
     try {
-      // 3. CHAME O SERVIÇO (como antes)
       const authResponse = await login({ email, password });
       
-      console.log('Login com sucesso!', authResponse.user.name);
-      
-      // 4. EM VEZ DO ALERT, NAVEGUE!
-      // (No futuro, você salvaria o token aqui)
-      navigate('/app/dashboard'); 
+      setUser(authResponse.user); // <-- Salva o usuário na memória global
+
+      navigate('/app/dashboard'); // <-- Redireciona
 
     } catch (err: any) {
       setError(err.message || 'Ocorreu um erro desconhecido.');

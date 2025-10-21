@@ -12,6 +12,9 @@ import { CourseCatalogPage } from './pages/CourseCatalogPage';
 
 // Páginas Privadas (Autenticadas)
 import { StudentDashboardPage } from './pages/StudentDashboardPage';
+import { MinhasTurmasPage } from './pages/MinhasTurmasPage';
+// 1. IMPORTE A NOVA PÁGINA
+import { MeuPerfilPage } from './pages/MeuPerfilPage';
 
 import './index.css';
 
@@ -20,22 +23,18 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* --- Rotas Públicas --- */}
-        {/* (Não usam o AppLayout) */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/registrar" element={<RegisterPage />} />
         <Route path="/cursos" element={<CourseCatalogPage />} />
 
         {/* --- Rotas Privadas / Autenticadas --- */}
-        {/* (Todas usam o AppLayout como "invólucro") */}
-        
         <Route path="/app" element={<AppLayout />}>
-          {/* A rota /app/dashboard renderiza o StudentDashboardPage */}
           <Route path="dashboard" element={<StudentDashboardPage />} />
+          <Route path="turmas" element={<MinhasTurmasPage />} />
           
-          {/* (Páginas futuras que também usarão o layout) */}
-          {/* <Route path="turmas" element={<MinhasTurmasPage />} /> */}
-          {/* <Route path="perfil" element={<PerfilPage />} /> */}
+          {/* 2. ADICIONE A NOVA ROTA AQUI */}
+          <Route path="perfil" element={<MeuPerfilPage />} />
         </Route>
 
       </Routes>
