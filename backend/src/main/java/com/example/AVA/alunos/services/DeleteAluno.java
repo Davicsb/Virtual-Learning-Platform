@@ -3,7 +3,6 @@ package com.example.AVA.alunos.services;
 import com.example.AVA.Command;
 import com.example.AVA.alunos.AlunosRepository;
 import com.example.AVA.alunos.model.Aluno;
-import jakarta.persistence.Id;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

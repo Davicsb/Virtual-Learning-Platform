@@ -1,12 +1,12 @@
-package com.example.AVA.alunos.model;
+package com.example.AVA.tutors.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Aluno")
-public class Aluno {
+@Table(name = "Tutor")
+public class Tutor {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +14,4 @@ public class Aluno {
 
     @Column(name = "Name")
     private String name;
-
-    @Column(name = "Course")
-    private String course;
-
 }
