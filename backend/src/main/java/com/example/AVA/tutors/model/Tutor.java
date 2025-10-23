@@ -1,7 +1,10 @@
 package com.example.AVA.tutors.model;
 
+import com.example.AVA.turma.model.Turma;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -14,4 +17,7 @@ public class Tutor {
 
     @Column(name = "Name")
     private String name;
+
+    @ManyToMany(mappedBy = "tutors", cascade = CascadeType.MERGE)
+    private List<Turma> turmas;
 }
