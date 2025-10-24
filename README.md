@@ -41,7 +41,7 @@ Para rodar o ambiente de desenvolvimento front-end, siga os passos abaixo.
 # Rodando o Back-End (Java & MySql)
 
 **Pré-requisitos:**
-* [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/download/?section=windows
+* [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/download/?section=windows)
 * [MySql (Community Server & Workbench)](https://dev.mysql.com/downloads/)
 * [Postman](https://www.postman.com/downloads/)
 
@@ -49,19 +49,50 @@ Para rodar o ambiente de desenvolvimento front-end, siga os passos abaixo.
 
 ### Guia de instalação
 
-1.  Abra o MySQL Workbench e no terminal digite:
+1.  Abra o MySQL Workbench e execute o seguinte código no terminal:
     ```bash
     create database AVA
     ```
-    E execute para criar a database a ser utilizada.
+    Em seguida, execute:
+    ```bash
+    use AVA
+    ```
+    Sua base de dados para o AVA foi criada.
 
-2.  Abra a pasta do repositório no IntelliJ.
+2.  Abra a pasta do repositório no IntelliJ.  
 
 3.  Nas configurações, clique na seção plugins e instale o plugin "LomboK" no marketplace.
 
-4.  No arquivo backend/target/classes/com/application.properties troque a senha e usuário do seu mySQL.
+4.  Nos arquivos backend/target/classes/com/application.properties e services/AuthService/target/classes/com/application.properties troque a senha e usuário para a do seu mySQL (A rota de localhost usa a default do MYSQL [3306]).
 
-5.  Rode o arquivo backend/target/classes/com/example/AVA/AvaApplication.java
+5.  Rode os arquivos backend/src/main/java/com/example/AVA/AvaApplication.java e services/AuthService/src/main/java/com/example/AuthService/AuthServiceApplication.java simultaneamente no IntelliJ.
+
+6.  Utilize o programa Postman para dar GET, POST, PUT e/ou DELETE em dados (colocados na aba "Body" em formato JSON) para a database AVA.
+
+7.  As rotas no momento são:  
+    ```string
+    localhost:8080/professor -> POST: Cadastra um usuário PROFESSOR na base, GET: Lista todos os professores na base.  
+    localhost:8080/professor/id -> PUT: Atualiza os dados do professor com o id, GET: Lista os dados do professor do id, DELETE: deleta o professor da base.
+    localhost:8080/professor/grade -> PUT: Dá/Atualiza a nota de um aluno em uma atividade, usando o id de ambos e a nota.
+      
+    localhost:8080/curso -> POST: Cadastra um curso na base, GET: Lista todos os cursos na base.
+    localhost:8080/curso/id -> PUT: Atualiza os dados do curso do id, GET: Lista os dados do curso do id, DELETE: deleta o curso da base  
+      
+    localhost:8080/turma -> POST, GET
+    localhost:8080/turma/id -> PUT, GET, DELETE
+
+    localhost:8080/atividades -> POST, GET
+    localhost:8080/atividades/id -> PUT, GET, DELETE
+
+
+    localhost:8081/auth/register -> POST: Cadastra um usuário ALUNO na base
+    localhost:8081/login -> POST: Faz uma tentativa de login, se der sucesso retorna uma string de um token JWT
+
+    //Debug
+    localhost:8081/public -> GET: Retorna "rota pública", feita para testar a camada de visibilidade
+    localhost:8081/private -> GET: Retorna "rota privada" se o token JWT for válido (coloque o token em Authorization -> Type/Bearer Token)
+
+    ```
 
 ---
 
