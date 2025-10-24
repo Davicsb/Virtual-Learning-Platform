@@ -1,5 +1,6 @@
 package com.example.AVA.alunos.model;
 
+import com.example.AVA.atividades.model.Assignment;
 import com.example.AVA.curso.model.Curso;
 import com.example.AVA.turma.model.Turma;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -27,10 +28,15 @@ public class Aluno {
 
     @ManyToOne
     @JoinColumn(name = "curso_id")
-    private Curso course;
-
+    private Curso course; //Vários alunos podem pertencer a um curso
 
     @ManyToMany(mappedBy = "students", cascade = CascadeType.MERGE)
     private List<Turma> turmas;
+
+    @Column(name = "userId")
+    private Integer userId;
+
+    //@ManyToMany(mappedBy = "alunos", cascade = CascadeType.MERGE)
+    //private List<Assignment> atividades;
 
 }

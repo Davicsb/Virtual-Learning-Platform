@@ -1,11 +1,22 @@
 package com.example.AVA.atividades.model;
 
+import com.example.AVA.alunos.model.Aluno;
+import com.example.AVA.turma.model.Turma;
+import com.example.AVA.tutors.model.Tutor;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "Assignment")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Assignment {
     @Id
     @Column(name = "Id")
@@ -22,8 +33,16 @@ public class Assignment {
     private String dueDate;
 
     @Column(name = "MaxPoints")
-    private Integer maxPoints;
+    private Double maxPoints;
 
-    @Column(name = "ClassId")
-    private String classId;
+    @ManyToOne
+    @JoinColumn(name = "turma_id")
+    private Turma turma; //Várias atividades podem pertencer a uma turma
+
+    //@ManyToMany(mappedBy = "atividades", cascade = CascadeType.MERGE)
+    //private List<Aluno> alunos; //Vários alunos podem pertencer a várias atividades
+
+    @ManyToOne
+    @JoinColumn(name = "tutor_id")
+    private Tutor tutor; //Várias atividades podem pertencer a um professor
 }
