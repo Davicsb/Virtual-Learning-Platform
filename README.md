@@ -15,7 +15,7 @@ Para rodar o ambiente de desenvolvimento front-end, siga os passos abaixo.
 
 1.  Clone o repositório (se ainda não o fez):
     ```bash
-    git clone https://github.com/Davicsb/Virtual-Learning-Platform?tab=readme-ov-file
+    git clone https://github.com/Davicsb/Virtual-Learning-Platform
     cd Virtual-Learning-Platform
     ```
 
