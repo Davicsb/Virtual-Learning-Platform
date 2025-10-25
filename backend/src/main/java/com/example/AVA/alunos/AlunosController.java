@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/data")
 public class AlunosController {
     private final CreateAluno createAluno;
     private final DeleteAluno deleteAluno;

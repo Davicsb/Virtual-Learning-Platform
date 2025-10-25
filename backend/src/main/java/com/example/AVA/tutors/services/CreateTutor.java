@@ -39,7 +39,7 @@ public class CreateTutor implements Command<UserTutorCommand, Tutor> {
             userPayload.setPassword(input.getPassword());
 
             ResponseEntity<String> savedUser = restTemplate
-                    .postForEntity("http://localhost:8081/auth/user", userPayload, String.class);
+                    .postForEntity("http://localhost:8080/auth/user", userPayload, String.class);
             System.out.println(Integer.parseInt(savedUser.getBody()));
 
             Tutor tutor = new Tutor();

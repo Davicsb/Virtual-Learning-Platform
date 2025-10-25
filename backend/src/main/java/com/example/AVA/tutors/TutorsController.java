@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/data")
 public class TutorsController {
     private final CreateTutor createTutor;
     private final DeleteTutor deleteTutor;

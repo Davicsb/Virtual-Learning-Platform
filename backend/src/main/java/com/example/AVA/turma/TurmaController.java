@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/data")
 public class TurmaController {
     private final CreateTurma createTurma;
     private final DeleteTurma deleteTurma;
