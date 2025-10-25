@@ -169,7 +169,7 @@ Microserviços para o funcionamento do sistema AVA.
 ## O que falta
 
 1.  Integração com o front
-2.  Mais um serviço talvez
+2.  Mais um serviço talvez (NotificationService? AnalyticsService? Media/MaterialService?)
 3.  A camada do admin - Só vai ter um admin no sistema e ele vai ter uma camada acima de visão de uma página
 4.  Implementação de materiais
 5.  Possibilidade de entrega de atividade pelo aluno.
