@@ -1,0 +1,41 @@
+Curso:
+	{
+		"title":"Etc e tal",
+		"content":"Etc e tal"
+	}
+
+Turma:
+	{
+		"title":"Etc e tal",
+		"content":"Descrição",
+		"course":{"id":Int},
+		"tutors":[{"id":Int},{"id":Int}],
+		"students":[{"id":Int},{"id":Int}]
+	}
+
+Atividade:
+	{
+		"title":"Etc e tal",
+		"content":"Descrição",
+		"dueDate":"Data de entrega",
+		"maxPoints":Double,
+		"turma":{"id":Int},
+		"tutor":{"id":Int}
+	}
+
+Professor:
+	{
+		"email":"coisa@gmail.com",
+		"password":"Etc e tal",
+		"name":"nome",
+		"turmas":[{"id":Int}]
+	}
+
+Aluno:
+	{
+		"email":"coisa@gmail.com",
+		"password":"Etc e tal",
+		"name":"nome",
+		"course":{"id":Int},
+		"turmas":[{"id":Int}, {"id":Int}]
+	}

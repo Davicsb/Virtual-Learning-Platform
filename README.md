@@ -67,7 +67,7 @@ Para rodar o ambiente de desenvolvimento front-end, siga os passos abaixo.
 
 5.  Rode os arquivos AvaApplication.java, AuthServiceApplication.java e ApiGatewayApplication.java simultaneamente no IntelliJ.
 
-6.  Utilize o programa Postman para dar GET, POST, PUT e/ou DELETE em dados (colocados na aba "Body" em formato JSON) para a database AVA.
+6.  Utilize o programa Postman para dar GET, POST, PUT e/ou DELETE em dados (colocados na aba "Body" em formato JSON) para a database AVA. O template de como deve ser o upload de dados com o POST está em `templates de POSTs.txt`.
 
 7.  As rotas no momento são:  
     ```string
