@@ -28,15 +28,17 @@ export const login = async (payload: LoginRequest): Promise<AuthResponse> => {
   }
 
   // --- MUDANÇA PARA TESTAR LOGIN DE ADMIN ---
-  console.log('--- FORÇANDO LOGIN COMO ADMIN ---');
+// return MOCK_AUTH_RESPONSE; // Retornaria o aluno (Davi Aluno)
+return { user: MOCK_USER_PROFESSOR, token: 'mock-prof-token.xyz.789' }; // Professor
+  /*
+   console.log('--- FORÇANDO LOGIN COMO ADMIN ---');
   return { // Retorna diretamente o ADMIN
     user: MOCK_USER_ADMIN,
     token: 'mock-admin-token.abc.123'
   };
-  /*
   // Linhas para forçar login como outros papéis (comentadas):
-  // return MOCK_AUTH_RESPONSE; // Retornaria o aluno (Davi Aluno)
-  // return { user: MOCK_USER_PROFESSOR, token: 'mock-prof-token.xyz.789' }; // Professor
+  // 
+  // 
   */
 };
 

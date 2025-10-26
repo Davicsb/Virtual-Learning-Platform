@@ -50,7 +50,7 @@ export const StudentDashboardPage = () => {
 
       <div className="dashboard-grid">
         {/* Coluna 1: Minhas Turmas */}
-        <DashboardCard title="Minhas Turmas (RF016)">
+        <DashboardCard title="Minhas Turmas">
           {turmas.length > 0 ? (
             turmas.map(turma => (
               <div key={turma.id} className="item-card">
@@ -64,7 +64,7 @@ export const StudentDashboardPage = () => {
         </DashboardCard>
 
         {/* Coluna 2: Atividades Pendentes */}
-        <DashboardCard title="Atividades Pendentes (RF017)">
+        <DashboardCard title="Atividades Pendentes">
           {atividades.length > 0 ? (
             atividades.map(atv => (
               <div key={atv.activityId} className="item-card item-atividade">
@@ -75,6 +75,12 @@ export const StudentDashboardPage = () => {
           ) : (
             <p>Você não tem nenhuma atividade pendente. Bom trabalho!</p>
           )}
+        </DashboardCard>
+
+        <DashboardCard title="Materiais recomendados">
+    
+            <p>Você não tem nenhuma recomendação. Bom trabalho!</p>
+          
         </DashboardCard>
       </div>
     </div>

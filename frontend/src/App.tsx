@@ -20,6 +20,9 @@ import { CriarTurmaPage } from './pages/CriarTurmaPage'; // Criar Turma (Profess
 import { AdminDashboardPage } from './pages/AdminDashboardPage'; // Dashboard Admin
 import { CriarCursoPage } from './pages/CriarCursoPage'; // Criar Curso (Admin)
 import { CadastrarUsuarioPage } from './pages/CadastrarUsuarioPage'; // Cadastrar Usuário (Admin)
+import { TurmaPage } from "./pages/TurmaPage";
+import { AdicionarMaterialPage } from "./pages/AdicionarMaterialPage";
+import { AdicionarAvisoPage } from "./pages/AdicionarAvisoPage";
 
 // Importa o CSS Global (com as cores-tema)
 import './index.css';
@@ -48,6 +51,10 @@ function App() {
           {/* Rotas de Aluno */}
           <Route path="dashboard" element={<StudentDashboardPage />} />
           <Route path="turmas" element={<MinhasTurmasPage />} />
+          <Route path="/app/turma/:id" element={<TurmaPage />} />
+          <Route path="/app/turma/:id/material/novo" element={<AdicionarMaterialPage />} />
+          <Route path="/app/turma/:id/aviso/novo" element={<AdicionarAvisoPage />} />
+          
           
           {/* Rotas de Professor */}
           <Route path="dashboard-professor" element={<ProfessorDashboardPage />} />
