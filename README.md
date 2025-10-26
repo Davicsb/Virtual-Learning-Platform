@@ -53,10 +53,7 @@ Para rodar o ambiente de desenvolvimento front-end, siga os passos abaixo.
     ```bash
     create database AVA
     ```
-    Em seguida, execute:
-    ```bash
-    create database Auth
-    ```
+
     Sua base de dados para o AVA e o AuthService foi criada.
 
 2.  Abra a pasta do repositório no IntelliJ.  
@@ -65,32 +62,84 @@ Para rodar o ambiente de desenvolvimento front-end, siga os passos abaixo.
 
 4.  Nos arquivos application.properties de cada serviço (Auth e Data[que no caso é a pasta do backend/AVA]) troque a senha e usuário para a do seu mySQL (A rota de localhost usa a default do MYSQL [3306]).
 
-5.  Rode os arquivos AvaApplication.java, AuthServiceApplication.java e ApiGatewayApplication.java simultaneamente no IntelliJ.
+5.  Rode os arquivos: 
+* backend/APIGateway/src/main/java/DHT/APIGateway/ApiGatewayApplication.java  
+* backend/services/AuthService/src/main/java/com/example/AuthService/AuthServiceApplication.java  
+* backend/services/DataService/src/main/java/com/example/AVA/AvaApplication.java  
+simultaneamente no IntelliJ (abra cada pasta no Intelijei para roda-los).
 
-6.  Utilize o programa Postman para dar GET, POST, PUT e/ou DELETE em dados (colocados na aba "Body" em formato JSON) para a database AVA. O template de como deve ser o upload de dados com o POST está em `templates de POSTs.txt`.
+6.  Utilize o programa Postman para dar GET, POST, PUT e/ou DELETE em dados (colocados na aba "Body" em formato JSON) para a database AVA. O template de como deve ser o upload de dados com o POST está em `templates de POSTs.txt`.  
+Para utilizar um token de login, copie-o do terminal e coloque em Authorization -> Type/Bearer_Token no Postman.
 
 7.  As rotas no momento são:  
     ```string
-    localhost:8080/data/professor -> POST: Cadastra um usuário PROFESSOR na base, GET: Lista todos os professores na base.  
-    localhost:8080/data/professor/id -> PUT: Atualiza os dados do professor com o id, GET: Lista os dados do professor do id, DELETE: deleta o professor da base.
-    localhost:8080/data/professor/grade -> PUT: Dá/Atualiza a nota de um aluno em uma atividade, usando o id de ambos e a nota, se o token JWT de uma conta PROFESSOR for válido (coloque o token em Authorization -> Type/Bearer Token).
-      
-    localhost:8080/data/curso -> POST: Cadastra um curso na base, GET: Lista todos os cursos na base.
-    localhost:8080/data/curso/id -> PUT: Atualiza os dados do curso do id, GET: Lista os dados do curso do id, DELETE: deleta o curso da base  
-      
-    localhost:8080/data/turma -> POST, GET
-    localhost:8080/data/turma/id -> PUT, GET, DELETE
+    localhost:8080/data/professor ->
+                                    POST: Cadastra um usuário PROFESSOR na base, só pode ser feito com um token de login do ADMIN (no momento não precisa de token)
+                                    GET: Lista todos os professores na base.  
+    
+    localhost:8080/data/professor/id ->
+                                    PUT: Atualiza os dados do professor com o id, só pode ser feito com um token de login do ADMIN ou PROFESSOR
+                                    GET: Lista os dados do professor do id
+                                    DELETE: deleta o professor da base, só pode ser feito com um token de login do ADMIN ou PROFESSOR
 
-    localhost:8080/data/atividades -> POST, GET
-    localhost:8080/data/atividades/id -> PUT, GET, DELETE
+    localhost:8080/data/professor/grade ->
+                                    PUT: Dá/Atualiza a nota de um aluno em uma atividade, usando o id de ambos e a nota, ó pode ser feito com um token de login do PROFESSOR
+    
 
 
-    localhost:8080/auth/register -> POST: Cadastra um usuário ALUNO na base
-    localhost:8080/auth/login -> POST: Faz uma tentativa de login, se der sucesso retorna uma string de um token JWT
+
+    localhost:8080/data/curso ->
+                                    POST: Cadastra um curso na base, só pode ser feito com um token de login do ADMIN
+                                    GET: Lista todos os cursos na base.
+
+    localhost:8080/data/curso/id ->
+                                    PUT: Atualiza os dados do curso do id, só pode ser feito com um token de login do ADMIN
+                                    GET: Lista os dados do curso do id,
+                                    DELETE: Deleta o curso da base, só pode ser feito com um token de login do ADMIN
+    
+
+
+
+    localhost:8080/data/turma ->
+                                    POST: Cadastra uma turma na base, só pode ser feito com um token de login do ADMIN ou PROFESSOR
+                                    GET: Lista todas as turmas na nase.
+
+    localhost:8080/data/turma/id -> 
+                                    PUT: Atualiza os dados da turma do id, só pode ser feito com um token de login do ADMIN ou PROFESSOR
+                                    GET: Lista os dados da turma no id.
+                                    DELETE: Deleta a turma do id, só pode ser feito com um token de login do ADMIN ou PROFESSOR
+    
+
+
+
+    localhost:8080/data/atividades ->
+                                    POST: Cadastra uma atividade na base, e todos os alunos na turma em que ela foi cadastrada a recebem, só pode ser feito com um token de login do PROFESSOR
+                                    GET: Lista todas as atividades na base.
+
+
+    localhost:8080/data/atividades/id ->
+                                    PUT: Atualiza os dados da atividade do id, só pode ser feito com um token de login do PROFESSOR
+                                    GET: Lista os dados da atividade no id.
+                                    DELETE: Deleta a atividade do id, só pode ser feito com um token de login do ADMIN ou PROFESSOR
+
+
+
+
+    localhost:8080/auth/register ->
+                                    POST: Cadastra um usuário na base, é pública e o usuário cadastrado é automaticamente ALUNO
+
+    
+    localhost:8080/auth/login -> 
+                                    POST: Faz uma tentativa de login, se der sucesso retorna uma string de um token JWT
+
 
     //Debug
-    localhost:8080/auth/public -> GET: Retorna "rota pública", feita para testar a camada de visibilidade
-    localhost:8080/auth/private -> GET: Retorna "rota privada" se o token JWT de uma conta PROFESSOR for válido (coloque o token em Authorization -> Type/Bearer Token)
+    localhost:8080/auth/public -> 
+                                    GET: Retorna "rota pública", feita para testar a camada de visibilidade
+
+
+    localhost:8080/auth/private -> 
+                                    GET: Retorna "rota privada" se o token JWT de uma conta PROFESSOR for válido.
 
     ```
 
@@ -172,5 +221,3 @@ Microserviços para o funcionamento do sistema AVA.
 2.  Mais um serviço talvez (NotificationService? AnalyticsService? Media/MaterialService?)
 3.  A camada do admin - Só vai ter um admin no sistema e ele vai ter uma camada acima de visão de uma página
 4.  Implementação de materiais
-5.  Possibilidade de entrega de atividade pelo aluno.
-6.  Verificação de autenticação nas páginas que não são a /register, /login e /landing page eu acho
