@@ -1,6 +1,8 @@
 package com.example.AVA.alunos;
 
 import com.example.AVA.alunos.model.Aluno;
+import com.example.AVA.alunos.model.AlunoAssignment;
+import com.example.AVA.alunos.model.SubmitAssignmentCommand;
 import com.example.AVA.alunos.model.UpdateAlunoCommand;
 import com.example.AVA.alunos.services.*;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +18,15 @@ public class AlunosController {
     private final GetAluno getAluno;
     private final GetAlunoId getAlunoId;
     private final UpdateAluno updateAluno;
+    private final SubmitAssignment submitAssignment;
 
-    public AlunosController(CreateAluno createAluno, DeleteAluno deleteAluno, GetAluno getAluno, GetAlunoId getAlunoId, UpdateAluno updateAluno) {
+    public AlunosController(CreateAluno createAluno, DeleteAluno deleteAluno, GetAluno getAluno, GetAlunoId getAlunoId, UpdateAluno updateAluno, SubmitAssignment submitAssignment) {
         this.createAluno = createAluno;
         this.deleteAluno = deleteAluno;
         this.getAluno = getAluno;
         this.getAlunoId = getAlunoId;
         this.updateAluno = updateAluno;
+        this.submitAssignment = submitAssignment;
     }
 
     @PostMapping("/aluno")
@@ -48,6 +52,11 @@ public class AlunosController {
     @DeleteMapping("/aluno/{id}")
     public ResponseEntity<Void> deleteAluno(@PathVariable Integer id){
         return deleteAluno.execute(id);
+    }
+
+    @PutMapping("/aluno/submit")
+    public ResponseEntity<AlunoAssignment> submitAssignmnet(@RequestBody SubmitAssignmentCommand submitAssignmentCommand){
+        return submitAssignment.execute(submitAssignmentCommand);
     }
 
 }

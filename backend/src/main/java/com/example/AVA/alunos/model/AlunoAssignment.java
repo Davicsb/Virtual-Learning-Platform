@@ -21,4 +21,7 @@ public class AlunoAssignment {
     @Column(name = "Grade")
     private Double grade;
 
+    @Column(name = "Submitted")
+    private boolean submitted = false;
+
 }
