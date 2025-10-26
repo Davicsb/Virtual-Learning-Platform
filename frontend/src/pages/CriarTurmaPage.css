@@ -1,0 +1,44 @@
+.criar-turma-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.criar-turma-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--cor-texto);
+}
+
+.criar-turma-subtitle {
+  font-size: 1.1rem;
+  color: var(--cor-texto-secundario);
+  margin-top: 0.25rem;
+}
+
+.criar-turma-card {
+  max-width: 800px; /* Limita a largura do formulário */
+  background-color: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  padding: 2rem;
+}
+
+/* Mensagem de erro genérica para o form */
+.form-error-message {
+  color: #DE350B; 
+  background-color: #FFEDEB; 
+  border: 1px solid #FFC6BD;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.criar-turma-footer {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end; /* Alinha os botões à direita */
+  gap: 0.5rem; /* Espaço entre os botões */
+}

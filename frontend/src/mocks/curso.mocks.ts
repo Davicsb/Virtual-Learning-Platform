@@ -1,5 +1,6 @@
 import type { Curso } from '../types/models';
 
+
 export const MOCK_CURSO_LIST: Curso[] = [
   {
     id: 'c1',
@@ -22,3 +23,13 @@ export const MOCK_CURSO_LIST: Curso[] = [
     description: 'Aprenda a liderar equipes de alta performance e entregar valor de forma mais rápida e eficiente.'
   },
 ];
+
+const cursosIniciais: Curso[] = [
+  { id: 'c1', title: 'Desenvolvimento Web com React e TypeScript', description: '...' },
+  { id: 'c2', title: 'Infraestrutura Ágil com Docker e Kubernetes', description: '...' },
+  { id: 'c3', title: 'UI/UX Design para Aplicações Modernas', description: '...' },
+  { id: 'c4', title: 'Gestão de Projetos Ágeis com Scrum', description: '...' },
+];
+
+// DB em memória
+export let mockCursosDB = [...cursosIniciais];

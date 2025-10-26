@@ -44,3 +44,18 @@ export const MOCK_TURMA_DETAILS: TurmaDetailsResponse = {
   // Simula uma turma com apenas um aluno (o Davi)
   alunos: [MOCK_USER_ALUNO], 
 };
+
+export const MOCK_TURMAS_PROFESSOR: TurmaSummary[] = [
+  {
+    id: 't-1',
+    name: 'Desenvolvimento Web 2025/2',
+    courseTitle: 'Engenharia de Software',
+    professorName: 'Profa. Ana Silva', // O nome do professor logado
+  },
+  {
+    id: 't-4',
+    name: 'Algoritmos Avançados',
+    courseTitle: 'Ciência da Computação',
+    professorName: 'Profa. Ana Silva',
+  },
+];
