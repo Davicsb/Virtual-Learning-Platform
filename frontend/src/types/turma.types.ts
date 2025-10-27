@@ -45,3 +45,9 @@ export interface CreateAtividadeRequest {
   dueDate: string;
   maxPoints: number;
 }
+
+export interface CreateTurmaRequest {
+  name: string;
+  description: string;
+  courseTitle: string; // Simplificado por enquanto
+}

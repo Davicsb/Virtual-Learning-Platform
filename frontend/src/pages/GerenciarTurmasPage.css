@@ -1,0 +1,38 @@
+.manage-turmas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Alinha no topo se o texto quebrar */
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.manage-turmas-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--cor-texto);
+}
+
+.manage-turmas-subtitle {
+  font-size: 1.1rem;
+  color: var(--cor-texto-secundario);
+  margin-top: 0.25rem;
+}
+
+.manage-turmas-header .btn {
+  /* Impede que o botão encolha */
+  flex-shrink: 0; 
+  /* Adiciona um espaço à esquerda se o texto do título for grande */
+  margin-left: 1rem; 
+}
+
+.manage-turmas-grid-section {
+  max-width: 1400px;
+}
+
+.manage-turmas-grid {
+  display: grid;
+  /* Reutiliza o mesmo estilo de grid da página do aluno */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
