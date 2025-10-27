@@ -11,7 +11,7 @@ export const CourseCard = ({ curso }: CourseCardProps) => {
     <div className="course-card">
       <div className="course-card-content">
         <h3>{curso.title}</h3>
-        <p>{curso.description}</p>
+        <p>{curso.content}</p>
       </div>
       {/* "Ver mais" leva para uma futura página de detalhes */}
       <Button variant="secondary" style={{ width: '100%' }}>

@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { FormLayout } from '../components/layout/FormLayout';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
-import { login } from '../services/authService';
+import { login } from '../services/Auth_Service';
 import { useAuthStore } from '../store/authStore'; // <-- Importa o store
 import './AuthForm.css';
+import { UserRole } from '../types/models';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -20,14 +21,27 @@ export const LoginPage = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setError(null);
+
+    if (!email || !password) {
+      setError('Preencha todos os campos.');
+      return;
+    }
+
     setIsLoading(true);
 
     try {
       const authResponse = await login({ email, password });
       
       setUser(authResponse.user); // <-- Salva o usuário na memória global
+      localStorage.setItem('token', authResponse.token); // <- Salva o token na memória local
+      localStorage.setItem('userId', authResponse.user.id); // <- Salva o id na memória local
+      //navigate('/app/dashboard'); // <-- Redireciona
 
-      navigate('/app/dashboard'); // <-- Redireciona
+      if (authResponse.user.role === UserRole.ADMIN){
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/app/dashboard');
+      }
 
     } catch (err: any) {
       setError(err.message || 'Ocorreu um erro desconhecido.');

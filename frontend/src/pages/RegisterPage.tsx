@@ -3,6 +3,8 @@ import { FormLayout } from '../components/layout/FormLayout';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
 import { Link } from 'react-router-dom';
+import { register } from '../services/Auth_Service';
+import { useNavigate } from 'react-router-dom';
 import './AuthForm.css';
 
 export const RegisterPage = () => {
@@ -14,23 +16,46 @@ export const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    setIsLoading(true);
+    //setIsLoading(true);
     setError(null);
+
+    if (!name || !email || !password){
+      setError('Preencha todos os campos.');
+      return;
+    }
     
     // Simula uma validação
     if (password.length < 6) {
       setError('A senha precisa ter pelo menos 6 caracteres.');
-      setIsLoading(false);
+      //setIsLoading(false);
       return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      await register({ name, email, password});
+      alert('Conta criada com sucesso!');
+      navigate('/login');
+    } catch (err: unknown) {
+      if (err instanceof Error){
+        setError(err.message);
+      } else {
+        setError('Erro inesperado ao criar conta.');
+      }
+    } finally {
+      setIsLoading(false);
     }
     
     // Simula uma chamada de API
-    await new Promise(r => setTimeout(r, 1500));
-    console.log('Registrado!', { name, email });
-    setIsLoading(false);
-    alert('Conta criada com sucesso! (Simulação)');
+    //await new Promise(r => setTimeout(r, 1500));
+    //console.log('Registrado!', { name, email });
+    //setIsLoading(false);
+    //alert('Conta criada com sucesso! (Simulação)');
     // Aqui navegaríamos para o login: navigate('/login')
   };
 

@@ -3,9 +3,9 @@ export type UserRole = typeof UserRole[keyof typeof UserRole];
 export type StatusEntrega = typeof StatusEntrega[keyof typeof StatusEntrega];
 
 export const UserRole = {
-  ADMIN: 'admin',
-  PROFESSOR: 'professor',
-  ALUNO: 'aluno',
+  ADMIN: 'ADMIN',
+  PROFESSOR: 'PROFESSOR',
+  ALUNO: 'ALUNO',
 } as const;
 
 export interface User {
@@ -18,7 +18,7 @@ export interface User {
 export interface Curso {
   id: string;
   title: string;
-  description: string;
+  content: string;
 }
 
 export interface Material {

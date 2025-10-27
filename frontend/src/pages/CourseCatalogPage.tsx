@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Header } from '../components/layout/Header';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { CourseCard } from '../components/common/CourseCard';
-import { getAllCursos } from '../services/cursoService'; 
+import { getAllCursos } from '../services/Curso_Service'; 
 import type { Curso } from '../types/models';
 import './CourseCatalogPage.css';
 
