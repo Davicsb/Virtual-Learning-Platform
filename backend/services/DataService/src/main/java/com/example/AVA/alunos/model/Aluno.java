@@ -35,6 +35,9 @@ public class Aluno {
     @Column(name = "userId")
     private Integer userId;
 
+    @Column(name = "visualização")
+    private List<Integer> materiaisVisualizados;
+
     //@ManyToMany(mappedBy = "alunos", cascade = CascadeType.MERGE)
     //private List<Assignment> atividades;
 

@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -25,6 +28,9 @@ public class Assignment {
 
     @Column(name = "Content")
     private String content;
+
+    @Column(name = "Arquivos")
+    private List<String> arquivos; // guarda o caminho dos arquivos
 
     @Column(name = "DueDate")
     private String dueDate;

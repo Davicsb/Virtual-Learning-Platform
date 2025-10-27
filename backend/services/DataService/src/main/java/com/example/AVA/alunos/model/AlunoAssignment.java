@@ -2,6 +2,9 @@ package com.example.AVA.alunos.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -17,6 +20,9 @@ public class AlunoAssignment {
 
     @Column(name = "Assignment_Id")
     private Integer assignmentId;
+
+    @Column(name = "Arquivos_entrega")
+    private List<String> arquivos;
 
     @Column(name = "Grade")
     private Double grade;

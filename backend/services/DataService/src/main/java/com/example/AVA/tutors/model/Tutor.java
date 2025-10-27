@@ -21,6 +21,9 @@ public class Tutor {
     @ManyToMany(mappedBy = "tutors", cascade = CascadeType.MERGE)
     private List<Turma> turmas;
 
+    @Column(name = "visualização")
+    private List<Integer> materiaisVisualizados;
+
     @Column(name = "userId")
     private Integer userId;
 }
