@@ -1,12 +1,16 @@
 package com.example.AuthService.security;
 
 import com.example.AuthService.model.CustomUser;
+import com.example.AuthService.model.LoginServiceCommand;
 import com.example.AuthService.model.StudentRequestCommand;
 import com.example.AuthService.security.services.CreateUserService;
 import com.example.AuthService.security.services.LoginService;
 import com.example.AuthService.security.services.RegisterUserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
@@ -23,7 +27,7 @@ public class SecurityController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<CustomUser> registerUser(@RequestBody StudentRequestCommand customUser){
+    public ResponseEntity<?> registerUser(@RequestBody StudentRequestCommand customUser){
         return registerUserService.register(customUser);
     }
 
@@ -33,8 +37,13 @@ public class SecurityController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody CustomUser customUser){
-        return loginService.login(customUser);
+    public ResponseEntity<?> login(@RequestBody CustomUser customUser){
+        try {
+            LoginServiceCommand response = loginService.login(customUser);
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", e.getMessage()));
+        }
     }
 
     @GetMapping("/public")

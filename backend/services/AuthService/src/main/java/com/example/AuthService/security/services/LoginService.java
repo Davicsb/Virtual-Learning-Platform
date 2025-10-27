@@ -2,6 +2,7 @@ package com.example.AuthService.security.services;
 
 import com.example.AuthService.model.CustomUser;
 import com.example.AuthService.model.CustomUserRepository;
+import com.example.AuthService.model.LoginServiceCommand;
 import com.example.AuthService.security.jwt.JwtUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,12 +23,13 @@ public class LoginService {
         this.customUserRepository = customUserRepository;
     }
 
-    public String login(CustomUser user){
+    public LoginServiceCommand login(CustomUser user){
 
-        Optional<CustomUser> savedUser = customUserRepository.findByEmail(user.getEmail());
+        Optional<CustomUser> userOptional = customUserRepository.findByEmail(user.getEmail());
 
-        if (savedUser.isPresent()){
-            user.setUserType(savedUser.get().getUserType());
+        if (userOptional.isPresent()){
+            CustomUser existingUser = userOptional.get();
+            user.setUserType(existingUser.getUserType());
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                     user.getEmail(),
                     user.getPassword()
@@ -37,7 +39,8 @@ public class LoginService {
 
             String jwtToken = JwtUtil.generateToken(user);
 
-            return jwtToken;
+            return new LoginServiceCommand(jwtToken, existingUser);
+
         }
 
         throw new RuntimeException("Email não cadastrado");

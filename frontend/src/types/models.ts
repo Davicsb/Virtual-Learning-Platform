@@ -10,9 +10,9 @@ export const UserRole = {
 
 export interface User {
   id: string;
-  name: string;
+  name?: string;
   email: string;
-  role: UserRole;
+  userType: UserRole;
 }
 
 export interface Curso {

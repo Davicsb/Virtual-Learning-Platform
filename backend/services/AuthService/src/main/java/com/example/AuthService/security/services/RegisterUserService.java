@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -26,7 +27,7 @@ public class RegisterUserService {
         this.restTemplate = restTemplate;
     }
 
-    public ResponseEntity<CustomUser> register(StudentRequestCommand user){
+    public ResponseEntity<?> register(StudentRequestCommand user){
 
         Optional<CustomUser> optionalUser = customUserRepository.findByEmail(user.getEmail());
         if (!optionalUser.isPresent()) {
@@ -47,6 +48,6 @@ public class RegisterUserService {
             return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomUser);
         }
 
-        throw new RuntimeException("Email já cadastrado");
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("message", "E-mail já está cadastrado."));
     }
 }

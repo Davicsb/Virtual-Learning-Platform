@@ -47,18 +47,18 @@ export const LoginPage = () => {
 
       // --- LÓGICA DE REDIRECIONAMENTO ---
       // 3. Verifica o papel (role) do usuário que acabou de logar
-      if (authResponse.user.role === UserRole.PROFESSOR) {
+      if (authResponse.user.userType === UserRole.PROFESSOR) {
         console.log('Redirecionando para /app/dashboard-professor'); // Log
         navigate('/app/dashboard-professor');
-      } else if (authResponse.user.role === UserRole.ALUNO) {
+      } else if (authResponse.user.userType === UserRole.ALUNO) {
         console.log('Redirecionando para /app/dashboard'); // Log
         navigate('/app/dashboard');
-      } else if (authResponse.user.role === UserRole.ADMIN) {
+      } else if (authResponse.user.userType === UserRole.ADMIN) {
         console.log('Redirecionando para /app/dashboard-admin'); // Log
         navigate('/app/dashboard-admin');
       } else {
         // Se for outro papel (futuro) ou erro inesperado
-        console.warn("Papel não reconhecido para redirecionamento:", authResponse.user.role);
+        console.warn("Papel não reconhecido para redirecionamento:", authResponse.user.userType);
         navigate('/'); // Volta para a Landing Page
       }
       // --- FIM DA LÓGICA ---
