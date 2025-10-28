@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recomendacoes")
+@RequestMapping("/rec")
 public class RecommendationServiceController {
 
     private final RecommendationService recomendacaoService;
@@ -19,7 +19,7 @@ public class RecommendationServiceController {
         this.recomendacaoService = recomendacaoService;
     }
 
-    @GetMapping
+    @GetMapping("/{alunoId}")
     public List<Material> recomendar(@RequestParam Integer alunoId) {
         return recomendacaoService.recomendar(alunoId);
     }

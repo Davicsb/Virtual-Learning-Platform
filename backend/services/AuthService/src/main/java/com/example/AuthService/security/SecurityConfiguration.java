@@ -13,11 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.List;
 
 @Configuration
 @EnableMethodSecurity
@@ -38,18 +33,6 @@ public class SecurityConfiguration {
         return new JwtAuthenticationFilter();
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
@@ -61,8 +44,9 @@ public class SecurityConfiguration {
                     authorize.requestMatchers("/auth/login").permitAll();
                     authorize.requestMatchers("/auth/register").permitAll();
                     authorize.requestMatchers("/auth/public").permitAll();
+                    authorize.requestMatchers("/auth/register-admin").permitAll();
                     //authorize.requestMatchers("/**").permitAll();
-                    authorize.requestMatchers("/auth/private").hasRole("PROFESSOR");
+                    authorize.requestMatchers("/auth/private").hasAnyRole("PROFESSOR", "ADMIN");;
                     authorize.requestMatchers("/data/professor/grade").hasRole("PROFESSOR");
                     authorize.anyRequest().authenticated();
 

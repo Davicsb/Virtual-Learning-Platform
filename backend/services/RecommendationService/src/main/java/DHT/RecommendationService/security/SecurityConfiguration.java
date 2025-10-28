@@ -1,5 +1,6 @@
-package com.example.AVA.security;
-import com.example.AVA.security.jwt.JwtAuthenticationFilter;
+package DHT.RecommendationService.security;
+
+import DHT.RecommendationService.security.jwt.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -40,28 +41,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> {
                     //authorize.anyRequest().permitAll();
                     authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
-                    authorize.requestMatchers(HttpMethod.GET, "data/professor/**").permitAll();
-                    authorize.requestMatchers(HttpMethod.GET, "data/aluno/**").permitAll();
-                    authorize.requestMatchers(HttpMethod.GET, "/data/curso", "/data/curso/**").permitAll();
-                    authorize.requestMatchers(HttpMethod.GET, "data/turma/**").permitAll();
-                    authorize.requestMatchers(HttpMethod.GET, "data/atividades/**").permitAll();
-                    authorize.requestMatchers(HttpMethod.GET, "/data/aluno/user-id/**").permitAll();
-                    authorize.requestMatchers(HttpMethod.GET, "/data/professor/user-id/**").permitAll();
-
-                    authorize.requestMatchers(HttpMethod.POST, "data/professor").permitAll();
-                    authorize.requestMatchers(HttpMethod.POST, "data/aluno").permitAll();
-                    authorize.requestMatchers(HttpMethod.POST, "data/curso").hasRole("ADMIN");
-                    authorize.requestMatchers(HttpMethod.POST, "data/turma").hasAnyRole("PROFESSOR", "ADMIN");
-                    authorize.requestMatchers(HttpMethod.POST, "data/atividades").hasRole("PROFESSOR");
-
-                    authorize.requestMatchers(HttpMethod.PUT, "data/professor/**").hasAnyRole("PROFESSOR", "ADMIN");
-                    authorize.requestMatchers(HttpMethod.PUT, "data/aluno/**").hasAnyRole("ALUNO", "ADMIN");
-                    authorize.requestMatchers(HttpMethod.PUT, "data/curso/**").hasAnyRole("ADMIN");
-                    authorize.requestMatchers(HttpMethod.PUT, "data/turma/**").hasAnyRole("PROFESSOR", "ADMIN");
-                    authorize.requestMatchers(HttpMethod.PUT, "data/professor/**").hasAnyRole("PROFESSOR", "ADMIN");
-
-                    authorize.requestMatchers("/data/professor/grade").hasRole("PROFESSOR");
-                    authorize.requestMatchers("/aluno/submit").hasRole("ALUNO");
+                    authorize.requestMatchers(HttpMethod.GET, "/rec/**").permitAll();
                     authorize.anyRequest().authenticated();
 
                 })
