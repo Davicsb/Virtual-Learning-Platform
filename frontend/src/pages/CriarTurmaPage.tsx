@@ -1,8 +1,9 @@
+//adc
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
-import { criarTurma } from '../services/turmaService'; // Importa o novo serviço
+import { criarTurma } from '../services/Turma_Service'; // Importa o novo serviço
 import './CriarTurmaPage.css';
 
 export const CriarTurmaPage = () => {

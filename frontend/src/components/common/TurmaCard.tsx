@@ -9,7 +9,7 @@ interface TurmaCardProps {
 export const TurmaCard = ({ turma }: TurmaCardProps) => {
   return (
     // O Link 'to' nos levará para a página de detalhes da turma
-    <Link to={`/app/turma/${turma.id}`} className="turma-card-link">
+    <Link to={`/app/turma/${turma.id.toString()}`} className="turma-card-link">
       <div className="turma-card">
         {/* Um "header" visual. No futuro, pode ter uma imagem. */}
         <div className="turma-card-header"></div>

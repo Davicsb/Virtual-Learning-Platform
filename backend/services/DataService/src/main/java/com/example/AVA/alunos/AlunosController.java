@@ -5,6 +5,7 @@ import com.example.AVA.alunos.model.AlunoAssignment;
 import com.example.AVA.alunos.model.SubmitAssignmentCommand;
 import com.example.AVA.alunos.model.UpdateAlunoCommand;
 import com.example.AVA.alunos.services.*;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,14 +20,18 @@ public class AlunosController {
     private final GetAlunoId getAlunoId;
     private final UpdateAluno updateAluno;
     private final SubmitAssignment submitAssignment;
+    private final GetAlunoByUserId getAlunoByUserId;
+    private final GetAlunoAssignments getAlunoAssignments;
 
-    public AlunosController(CreateAluno createAluno, DeleteAluno deleteAluno, GetAluno getAluno, GetAlunoId getAlunoId, UpdateAluno updateAluno, SubmitAssignment submitAssignment) {
+    public AlunosController(CreateAluno createAluno, DeleteAluno deleteAluno, GetAluno getAluno, GetAlunoId getAlunoId, UpdateAluno updateAluno, SubmitAssignment submitAssignment, GetAlunoByUserId getAlunoByUserId, GetAlunoAssignments getAlunoAssignments) {
         this.createAluno = createAluno;
         this.deleteAluno = deleteAluno;
         this.getAluno = getAluno;
         this.getAlunoId = getAlunoId;
         this.updateAluno = updateAluno;
         this.submitAssignment = submitAssignment;
+        this.getAlunoByUserId = getAlunoByUserId;
+        this.getAlunoAssignments = getAlunoAssignments;
     }
 
     @PostMapping("/aluno")
@@ -42,6 +47,16 @@ public class AlunosController {
     @GetMapping("/aluno/{id}")
     public ResponseEntity<Aluno> getAlunoId(@PathVariable Integer id){
         return getAlunoId.execute(id);
+    }
+
+    @GetMapping("/aluno/user-id/{userId}")
+    public ResponseEntity<Aluno> getAlunoByUserId(@PathVariable Integer userId) {
+        return getAlunoByUserId.execute(userId);
+    }
+
+    @GetMapping("/aluno/{alunoId}/atividades")
+    public ResponseEntity<List<AlunoAssignment>> getAlunoAssignments(@PathVariable Integer alunoId) {
+        return getAlunoAssignments.execute(alunoId);
     }
 
     @PutMapping("/aluno/{id}")

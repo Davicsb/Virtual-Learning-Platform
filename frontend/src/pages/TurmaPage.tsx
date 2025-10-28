@@ -49,13 +49,13 @@ export const TurmaPage = () => {
       <header className="turma-page-header">
         <h1 className="turma-page-title">Material da turma</h1>
         <p className="turma-page-subtitle">
-          {user?.role === UserRole.PROFESSOR
+          {user?.userType === UserRole.PROFESSOR
             ? 'Gerencie materiais e comunicados desta turma.'
             : 'Veja os materiais e comunicados do professor.'}
         </p>
 
         {/* Botões só aparecem para PROFESSOR */}
-        {user?.role === UserRole.PROFESSOR && (
+        {user?.userType === UserRole.PROFESSOR && (
           <div className="turma-actions">
             <Button
               variant="primary"

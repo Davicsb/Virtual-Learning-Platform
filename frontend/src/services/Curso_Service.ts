@@ -6,7 +6,7 @@ import type { Curso } from '../types/models';
  */
 export const getAllCursos = async (): Promise<Curso[]> => {
   try {
-      const response = await fetch('http://localhost:8082/data/curso', { // Vai no endpoint
+      const response = await fetch('http://localhost:8080/data/curso', { // //troca por 8082 para debugar
             method: 'GET', //Metódo GET (que é publico)
             headers: {
                 'Content-Type': 'application/json', // O corpo da requisição está em JSON

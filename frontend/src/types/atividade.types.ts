@@ -16,11 +16,13 @@ export interface AtividadeDetailsResponse extends Atividade {
 }
 
 export interface SubmitEntregaRequest {
-  files: Array<{ fileName: string; fileUrl: string }>;
-  studentComments: string;
+  alunoId: number;
+  atividadeId: number;
 }
 
+
 export interface GradeEntregaRequest {
+  alunoId: number;
+  atividadeId: number;
   grade: number;
-  feedback: string;
 }

@@ -1,6 +1,7 @@
 package com.example.AVA.tutors;
 
 import com.example.AVA.alunos.model.AlunoAssignment;
+import com.example.AVA.alunos.services.GetAlunoByUserId;
 import com.example.AVA.tutors.model.GradeAssignmentCommand;
 import com.example.AVA.tutors.model.Tutor;
 import com.example.AVA.tutors.model.UpdateTutorCommand;
@@ -20,14 +21,16 @@ public class TutorsController {
     private final GetTutorId getTutorId;
     private final UpdateTutor updateTutor;
     private final GradeAssignment gradeAssignment;
+    private final GetTutorByUserId getTutorByUserId;
 
-    public TutorsController(CreateTutor createTutor, DeleteTutor deleteTutor, GetTutor getTutor, GetTutorId getTutorId, UpdateTutor updateTutor, GradeAssignment gradeAssignment) {
+    public TutorsController(CreateTutor createTutor, DeleteTutor deleteTutor, GetTutor getTutor, GetTutorId getTutorId, UpdateTutor updateTutor, GradeAssignment gradeAssignment, GetAlunoByUserId getAlunoByUserId, GetTutorByUserId getTutorByUserId) {
         this.createTutor = createTutor;
         this.deleteTutor = deleteTutor;
         this.getTutor = getTutor;
         this.getTutorId = getTutorId;
         this.updateTutor = updateTutor;
         this.gradeAssignment = gradeAssignment;
+        this.getTutorByUserId = getTutorByUserId;
     }
 
     @PostMapping("/professor")
@@ -43,6 +46,12 @@ public class TutorsController {
     @GetMapping("/professor/{id}")
     public ResponseEntity<Tutor> getTutorId(@PathVariable Integer id){
         return getTutorId.execute(id);
+    }
+
+
+    @GetMapping("/professor/user-id/{userId}")
+    public ResponseEntity<Tutor> getTutorByUserId(@PathVariable Integer userId){
+        return getTutorByUserId.execute(userId);
     }
 
     @PutMapping("/professor/{id}")

@@ -9,29 +9,32 @@ export const UserRole = {
 } as const;
 
 export interface User {
-  id: string;
+  id: number;
   name?: string;
   email: string;
   userType: UserRole;
 }
 
 export interface Curso {
-  id: string;
+  id: number;
   title: string;
   content: string;
 }
 
 export interface Material {
-  id: string;
+  id: number;
   title: string;
-  description: string;
+  content: string;
+  type: string;
   fileUrl?: string;
   externalLink?: string;
+  categoria: string;
+  turma: Turma;
   createdAt: string; 
 }
 
 export interface Aviso {
-  id: string;
+  id: number;
   title: string;
   content: string;
   authorName: string;
@@ -39,16 +42,18 @@ export interface Aviso {
 }
 
 export interface Atividade {
-  id: string;
+  id: number;
   title: string;
-  description: string;
-  dueDate: string;
+  content: string;
+  arquivos: string[],
+  dueDate: string; // ou date
   maxPoints: number;
-  classId: string;
+  turma: Turma;
+  tutor: Tutor;
 }
 
 export interface ArquivoEntrega {
-  id: string;
+  id: number;
   fileName: string;
   fileUrl: string;
 }
@@ -60,7 +65,7 @@ export const StatusEntrega = {
 } as const;
 
 export interface Entrega {
-  id: string;
+  id: number;
   activityId: string;
   studentId: string;
   status: StatusEntrega;
@@ -68,4 +73,54 @@ export interface Entrega {
   submittedAt: string | null;
   grade: number | null;
   feedback: string | null;
+}
+
+export interface Aluno {
+  id: number;
+  name: string;
+  course: Curso;
+  turmas: Turma[];
+  userId: number;
+  materiaisVisualizados: number[];
+}
+
+export interface Tutor {
+  id: number;
+  name: string;
+  turmas: Turma[];
+  materiaisVisualizados: number[];
+  userId: number;
+}
+
+export interface Turma {
+  id: number;
+  title: string;
+  content: string;
+  course: Curso;
+  tutors: Tutor[];
+  students: Aluno[];
+}
+
+export interface AlunoAssignment {
+  id: number;
+  alunoId: number;
+  assignmentId: number;
+  arquivos: string[] | null;
+  grade: number | null;
+  submitted: boolean;
+}
+
+export interface RegisterRequest {
+  name: string;
+  email: string;
+  password: string;
+  courseId: number;
+  turmaIds: number[];
+}
+
+export interface RegisterProfessorRequest {
+  name: string;
+  email: string;
+  password: string;
+  turmaIds: number[];
 }

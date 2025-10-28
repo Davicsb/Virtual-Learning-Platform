@@ -7,7 +7,7 @@ import './Sidebar.css';
 
 export const Sidebar = () => {
   const user = useAuthStore((state) => state.user);
-  const userRole = user?.role; // Pega o papel do usuário
+  const userRole = user?.userType; // Pega o papel do usuário
 
   return (
     <aside className="sidebar">

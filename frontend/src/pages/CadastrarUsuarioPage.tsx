@@ -1,9 +1,10 @@
+//adc
 // src/pages/CadastrarUsuarioPage.tsx
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
-import { registerUserByAdmin } from '../services/authService'; // Reutiliza a função
+import { registerUserByAdmin, registerProfessorByAdmin } from '../services/Auth_Service'; // Reutiliza a função
 import { UserRole } from '../types/models'; // Importa papéis
 import './CriarTurmaPage.css'; // Reutiliza CSS
 
@@ -14,25 +15,47 @@ export const CadastrarUsuarioPage = () => {
   const [role, setRole] = useState<UserRole>(UserRole.ALUNO); // Default para Aluno
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [courseId, setCourseId] = useState<number | null>(null);
+  const [turmaIds, setTurmaIds] = useState<number[]>([]);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsSaving(true);
-    setError(null);
-    try {
-      if (!name || !email || !password) throw new Error('Todos os campos são obrigatórios.');
-      if (password.length < 6) throw new Error('A senha deve ter no mínimo 6 caracteres.');
-      
-      await registerUserByAdmin({ name, email, password, role });
-      // Volta para o dashboard do admin após criar
-      navigate('/app/dashboard-admin'); 
-    } catch (err: any) {
-      setError(err.message || 'Erro ao cadastrar usuário.');
-    } finally {
-      setIsSaving(false);
+  e.preventDefault();
+  setIsSaving(true);
+  setError(null);
+
+  try {
+    if (!name || !email || !password) throw new Error('Todos os campos são obrigatórios.');
+    if (password.length < 6) throw new Error('A senha deve ter no mínimo 6 caracteres.');
+
+    if (role === UserRole.ALUNO) {
+      if (!courseId || turmaIds.length === 0) throw new Error('Selecione o curso e pelo menos uma turma.');
+
+      await registerUserByAdmin({
+        name,
+        email,
+        password,
+        courseId,
+        turmaIds,
+      });
+    } if (role === UserRole.PROFESSOR) {
+        if (turmaIds.length === 0) throw new Error('Selecione pelo menos uma turma.');
+          await registerProfessorByAdmin({
+            name,
+            email,
+            password,
+            turmaIds,
+          });
     }
-  };
+
+    navigate('/app/dashboard-admin');
+  } catch (err: any) {
+    setError(err.message || 'Erro ao cadastrar usuário.');
+  } finally {
+    setIsSaving(false);
+  }
+};
 
   return (
     <div className="criar-turma-container"> {/* Reutiliza classe */}

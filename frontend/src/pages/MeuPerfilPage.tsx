@@ -1,8 +1,11 @@
+//adc
 import { useState, useEffect, type FormEvent } from 'react';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
-import { getMe, updateProfile } from '../services/authService';
+import { getMeAluno, getMeProfessor, updateProfileAluno, updateProfileProfessor } from '../services/Auth_Service';
+import type { Aluno } from '../types/models';
+import type { Turma } from '../types/models';
 import { useAuthStore } from '../store/authStore';
 import './MeuPerfilPage.css';
 
@@ -10,6 +13,8 @@ export const MeuPerfilPage = () => {
   // Estado do formulário de perfil
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [course, setCourse] = useState('');
+  const [turmas, setTurmas] = useState<Turma[]>([]);
   
   // Estado do formulário de senha
   const [oldPassword, setOldPassword] = useState('');
@@ -28,41 +33,60 @@ export const MeuPerfilPage = () => {
   
   // Busca os dados do usuário ao carregar a página (se não estiver na memória)
   useEffect(() => {
-    // Se o usuário já está na memória (veio do AppLayout), usa ele
-    if (currentUser) {
-      setName(currentUser.name);
+  const fetchPerfil = async () => {
+    try {
+      if (!currentUser) return;
+
+      if (currentUser.userType === 'ALUNO') {
+        const aluno = await getMeAluno();
+        setName(aluno.name);
+        setCourse(aluno.course.title);
+        setTurmas(aluno.turmas);
+      }
+
+      if (currentUser.userType === 'PROFESSOR') {
+        const professor = await getMeProfessor(); // você precisa criar essa função
+        setName(professor.name);
+        setTurmas(professor.turmas);
+        //setDisciplinas(professor.disciplinas); // exemplo
+      }
+
       setEmail(currentUser.email);
+      setUser({ ...currentUser, name }); // atualiza nome no store
       setIsLoading(false);
-    } else {
-      // Se não, busca na API (fallback)
-      getMe().then(userData => {
-        setName(userData.name);
-        setEmail(userData.email);
-        setUser(userData); // Salva na memória também
-        setIsLoading(false);
-      }).catch(err => {
-        console.error(err);
-        setIsLoading(false);
-      });
+    } catch (err) {
+      console.error(err);
+      setIsLoading(false);
     }
-  }, [currentUser, setUser]); // Depende do currentUser e setUser
+  };
+
+  fetchPerfil();
+}, [currentUser, setUser]); // Depende do currentUser e setUser
 
   // Envio do formulário de PERFIL
   const handleProfileSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsSavingProfile(true);
-    setSuccessMessage(null);
+  e.preventDefault();
+  setIsSavingProfile(true);
+  setSuccessMessage(null);
 
-    try {
-      const updatedUser = await updateProfile({ name, email });
-      setUser(updatedUser); // <-- Atualiza a memória global
-      setSuccessMessage('Perfil atualizado com sucesso!');
-    } catch (err) {
-      // Tratar erro
-    } finally {
-      setIsSavingProfile(false);
+  try {
+    if (currentUser?.userType === 'ALUNO') {
+      const updatedAluno = await updateProfileAluno({ name });
+      setUser({ ...currentUser, name: updatedAluno.name });
     }
-  };
+
+    if (currentUser?.userType === 'PROFESSOR') {
+      const updatedProfessor = await updateProfileProfessor({ name });
+      setUser({ ...currentUser, name: updatedProfessor.name });
+    }
+
+    setSuccessMessage('Perfil atualizado com sucesso!');
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setIsSavingProfile(false);
+  }
+};
 
   // Envio do formulário de SENHA (simulação)
   const handlePasswordSubmit = async (e: FormEvent) => {
@@ -117,6 +141,18 @@ export const MeuPerfilPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               disabled={isSavingProfile}
             />
+            {currentUser?.userType === 'ALUNO' && (
+              <>
+                <Input label="Curso" type="text" value={course} disabled />
+                <p>Turmas: {turmas.map(t => t.title).join(', ')}</p>
+              </>
+            )}
+
+            {currentUser?.userType === 'PROFESSOR' && (
+              <>
+                <p>Turmas: {turmas.map(d => d.title).join(', ')}</p>
+              </>
+            )}
             <footer className="profile-card-footer">
               <Button type="submit" variant="primary" disabled={isSavingProfile}>
                 {isSavingProfile ? 'Salvando...' : 'Salvar Alterações'}

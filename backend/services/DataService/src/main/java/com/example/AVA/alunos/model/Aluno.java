@@ -27,7 +27,7 @@ public class Aluno {
 
     @ManyToOne
     @JoinColumn(name = "curso_id")
-    private Curso course; //Vários alunos podem pertencer a um curso
+    private Curso course;
 
     @ManyToMany(mappedBy = "students", cascade = CascadeType.MERGE)
     private List<Turma> turmas;
@@ -38,7 +38,5 @@ public class Aluno {
     @Column(name = "visualização")
     private List<Integer> materiaisVisualizados;
 
-    //@ManyToMany(mappedBy = "alunos", cascade = CascadeType.MERGE)
-    //private List<Assignment> atividades;
 
 }

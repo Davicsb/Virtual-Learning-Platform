@@ -1,3 +1,4 @@
+//adc
 // src/pages/LoginPage.tsx
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importa hook de navegação
@@ -41,8 +42,9 @@ export const LoginPage = () => {
       const authResponse = await login({ email, password });
       
       setUser(authResponse.user); // <-- Salva o usuário na memória global
+      localStorage.setItem('email', authResponse.user.email);
       localStorage.setItem('token', authResponse.token); // <- Salva o token na memória local
-      localStorage.setItem('userId', authResponse.user.id); // <- Salva o id na memória local
+      localStorage.setItem('userId', authResponse.user.id.toString());// <- Salva o id na memória local
       //navigate('/app/dashboard'); // <-- Redireciona
 
       // --- LÓGICA DE REDIRECIONAMENTO ---
@@ -50,12 +52,15 @@ export const LoginPage = () => {
       if (authResponse.user.userType === UserRole.PROFESSOR) {
         console.log('Redirecionando para /app/dashboard-professor'); // Log
         navigate('/app/dashboard-professor');
+
       } else if (authResponse.user.userType === UserRole.ALUNO) {
         console.log('Redirecionando para /app/dashboard'); // Log
         navigate('/app/dashboard');
+
       } else if (authResponse.user.userType === UserRole.ADMIN) {
         console.log('Redirecionando para /app/dashboard-admin'); // Log
         navigate('/app/dashboard-admin');
+        
       } else {
         // Se for outro papel (futuro) ou erro inesperado
         console.warn("Papel não reconhecido para redirecionamento:", authResponse.user.userType);

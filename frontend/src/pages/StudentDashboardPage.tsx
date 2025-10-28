@@ -1,18 +1,20 @@
+//adc
 import { useState, useEffect } from 'react';
 import { DashboardCard } from '../components/common/DashboardCard';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
-import { getMinhasTurmas } from '../services/turmaService';
-import { getAtividadesPendentes } from '../services/atividadeService';
+import { useAuthStore } from '../store/authStore';
+import { getMeAluno } from '../services/Auth_Service';
+import { getMinhasAtividadesAluno } from '../services/Atividade_Service';
+import { mapTurmaToSummary } from '../services/Turma_Service';
 import type { TurmaSummary } from '../types/turma.types';
-import type { AtividadePendente } from '../types/atividade.types';
-import { useAuthStore } from '../store/authStore'; 
+import type { AlunoAssignment } from '../types/models';
+
 import './StudentDashboardPage.css';
 
 export const StudentDashboardPage = () => {
   const [turmas, setTurmas] = useState<TurmaSummary[]>([]);
-  const [atividades, setAtividades] = useState<AtividadePendente[]>([]);
+  const [atividadesPendentes, setAtividadesPendentes] = useState<AlunoAssignment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const user = useAuthStore((state) => state.user); // <-- Lê o usuário da memória
 
   // Busca os dados (turmas E atividades) quando a página carrega
@@ -20,21 +22,23 @@ export const StudentDashboardPage = () => {
     const carregarDados = async () => {
       setIsLoading(true);
       try {
-        const [turmasData, atividadesData] = await Promise.all([
-          getMinhasTurmas(),
-          getAtividadesPendentes()
-        ]);
-        setTurmas(turmasData);
-        setAtividades(atividadesData);
+        const aluno = await getMeAluno();
+        const turmasResumo = aluno.turmas?.map(mapTurmaToSummary) ?? [];
+        setTurmas(turmasResumo);
+
+        const entregas = await getMinhasAtividadesAluno(aluno.id);
+        const pendentes = entregas.filter(e => !e.submitted);
+        setAtividadesPendentes(pendentes);
       } catch (error) {
-        console.error("Erro ao carregar o dashboard:", error);
+        console.error("Erro ao carregar o dashboard do aluno:", error);
       } finally {
         setIsLoading(false);
       }
     };
-    
+
     carregarDados();
   }, []);
+
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -63,20 +67,18 @@ export const StudentDashboardPage = () => {
           )}
         </DashboardCard>
 
-        {/* Coluna 2: Atividades Pendentes */}
         <DashboardCard title="Atividades Pendentes">
-          {atividades.length > 0 ? (
-            atividades.map(atv => (
-              <div key={atv.activityId} className="item-card item-atividade">
-                <strong>{atv.activityTitle}</strong>
-                <span>Entrega: {new Date(atv.dueDate).toLocaleDateString('pt-BR')}</span>
+          {atividadesPendentes.length > 0 ? (
+            atividadesPendentes.map(entrega => (
+              <div key={entrega.id} className="item-card item-atividade">
+                <strong>Atividade #{entrega.assignmentId}</strong>
+                <span>Status: Pendente</span>
               </div>
-            ))
-          ) : (
-            <p>Você não tem nenhuma atividade pendente. Bom trabalho!</p>
-          )}
-        </DashboardCard>
-
+              ))
+            ) : (
+              <p>Você não tem nenhuma atividade pendente. Bom trabalho!</p>
+            )}
+          </DashboardCard>
         <DashboardCard title="Materiais recomendados">
     
             <p>Você não tem nenhuma recomendação. Bom trabalho!</p>

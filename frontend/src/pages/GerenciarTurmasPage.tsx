@@ -1,29 +1,36 @@
+//adc
 // src/pages/GerenciarTurmasPage.tsx
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
-import { TurmaCard } from '../components/common/TurmaCard'; // Reutiliza o card
-import { Button } from '../components/common/Button'; // Importa o botão
-import { getMinhasTurmasProfessor } from '../services/turmaService'; // Serviço do professor
+import { TurmaCard } from '../components/common/TurmaCard';
+import { Button } from '../components/common/Button';
+import { getMeProfessor } from '../services/Auth_Service';
+import { mapTurmaToSummary } from '../services/Turma_Service';
 import type { TurmaSummary } from '../types/turma.types';
-import './GerenciarTurmasPage.css'; // CSS da página
+import './GerenciarTurmasPage.css';
 
 export const GerenciarTurmasPage = () => {
   const [turmas, setTurmas] = useState<TurmaSummary[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate(); // Inicializa useNavigate
+  const [hasError, setHasError] = useState(false);
+  const navigate = useNavigate();
 
-  // Busca as turmas do professor
   useEffect(() => {
-    getMinhasTurmasProfessor()
-      .then(data => setTurmas(data))
-      .catch(err => console.error("Falha ao buscar turmas do professor", err))
+    getMeProfessor()
+      .then(professor => {
+        const turmasResumo = professor.turmas?.map(mapTurmaToSummary) ?? [];
+        setTurmas(turmasResumo);
+      })
+      .catch(err => {
+        console.error('Erro ao buscar turmas do professor:', err);
+        setHasError(true);
+      })
       .finally(() => setIsLoading(false));
-  }, []); // O [] garante que isso rode só uma vez
+  }, []);
 
-  // Função atualizada para navegar
   const handleCriarTurma = () => {
-    navigate('/app/criar-turma'); // Navega para a página de criação
+    navigate('/app/criar-turma');
   };
 
   return (
@@ -35,25 +42,27 @@ export const GerenciarTurmasPage = () => {
             Crie novas turmas ou acesse as existentes para adicionar conteúdo e alunos.
           </p>
         </div>
-        {/* Botão para Criar Turma (RF009) */}
         <Button variant="primary" onClick={handleCriarTurma}>
           + Criar Nova Turma
         </Button>
       </div>
 
       <section className="manage-turmas-grid-section">
-        {isLoading ? (
+        {hasError ? (
+          <p className="turmas-error-message">
+            Ocorreu um erro ao carregar suas turmas. Tente novamente mais tarde.
+          </p>
+        ) : isLoading ? (
           <LoadingSpinner />
+        ) : turmas.length === 0 ? (
+          <p className="turmas-empty-message">
+            Você ainda não gerencia nenhuma turma.
+          </p>
         ) : (
           <div className="manage-turmas-grid">
-            {turmas.length > 0 ? (
-              turmas.map(turma => (
-                // O TurmaCard já tem o Link para /app/turma/:id (futura página de detalhes)
-                <TurmaCard key={turma.id} turma={turma} />
-              ))
-            ) : (
-              <p>Você ainda não gerencia nenhuma turma.</p>
-            )}
+            {turmas.map(turma => (
+              <TurmaCard key={turma.id} turma={turma} />
+            ))}
           </div>
         )}
       </section>

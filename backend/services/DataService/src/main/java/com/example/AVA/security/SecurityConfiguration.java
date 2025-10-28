@@ -63,6 +63,8 @@ public class SecurityConfiguration {
                     authorize.requestMatchers(HttpMethod.GET, "/data/curso", "/data/curso/**").permitAll();
                     authorize.requestMatchers(HttpMethod.GET, "data/turma/**").permitAll();
                     authorize.requestMatchers(HttpMethod.GET, "data/atividades/**").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET, "/data/aluno/user-id/**").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET, "/data/professor/user-id/**").permitAll();
 
                     authorize.requestMatchers(HttpMethod.POST, "data/professor").permitAll();
                     authorize.requestMatchers(HttpMethod.POST, "data/aluno").permitAll();

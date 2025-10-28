@@ -39,3 +39,11 @@
 .item-card.item-atividade strong {
   color: #d9480f; /* Laranja/vermelho para pendências */
 }
+
+.turmas-empty-message,
+.turmas-error-message {
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+  margin-top: 1rem;
+}

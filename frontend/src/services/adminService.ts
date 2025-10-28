@@ -31,9 +31,9 @@ export const createCurso = async (payload: CreateCursoRequest): Promise<Curso> =
   await delay(900);
   
   const novoCurso: Curso = {
-    id: `c-${Date.now()}`,
+    id: 1,
     title: payload.title,
-    description: payload.description,
+    content: payload.description,
   };
   
   mockCursosDB.push(novoCurso); // Adiciona ao DB mock
