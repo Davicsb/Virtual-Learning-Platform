@@ -213,11 +213,3 @@ Microserviços para o funcionamento do sistema AVA.
 
 `AuthService`         - Lida com a autenticação e cadastro de usuários.  
 `DataService`         - Lida com o gerenciamento de dados dos usuários e materiais do sistema.   
-
-
-## O que falta
-
-1.  Integração com o front
-2.  Mais um serviço talvez (NotificationService? AnalyticsService? Media/MaterialService?)
-3.  A camada do admin - Só vai ter um admin no sistema e ele vai ter uma camada acima de visão de uma página
-4.  Implementação de materiais
